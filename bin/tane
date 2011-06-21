@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+begin
+  require 'tane'
+rescue LoadError
+  $: << File.expand_path("../../lib", __FILE__)
+  require 'tane'
+end
+
+Tane.exec(ARGV.join(' '))
+
