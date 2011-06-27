@@ -52,7 +52,14 @@ module Tane
       
       restart_nginx
 
-      start_rails(command)
+      if command.strip == "c" or command.strip == "s"
+        start_rails(command)
+      else
+        puts "launching `#{command.strip}' with env:"
+        puts "\t#{ENV.to_hash.inspect}"
+        Kernel.exec("bundle exec #{command.strip}")
+      end
+
     end
   end
 end
